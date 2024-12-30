@@ -202,7 +202,7 @@ const App = () => {
 
     try {
       const response = await axios.post(
-        "https://klotzecheck.onrender.com",
+        "https://klotzecheck.onrender.com/extract",  
         { url },
         {
           headers: {
