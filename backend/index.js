@@ -26,7 +26,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 
 const port = process.env.PORT || 9090;
@@ -84,15 +84,41 @@ async function downloadImage(url, outputPath) {
     }
 }
 
+
+
 // Route: Extract data
 app.post('/extract', async (req, res) => {
     const { url } = req.body;
     let browser = null;
+    const getExecutablePath = () => {
+      if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+        return process.env.PUPPETEER_EXECUTABLE_PATH;
+      }
+    
+      if (process.platform === 'linux') {
+        return '/usr/bin/google-chrome';
+      }
+    
+      if (process.platform === 'darwin') {
+        return '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+      }
+    
+      if (process.platform === 'win32') {
+        return 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+      }
+    
+      throw new Error('Chrome/Chromium not found!');
+    };
+    console.log('Running on:', process.platform);
+    
+    
 
     try {
         browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            // args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            executablePath: puppeteer.executablePath(),
+
         });
 
         const page = await browser.newPage();
@@ -222,6 +248,16 @@ app.listen(port, () => {
 });
 
 
+
+app.get("/demo", (req, res) => {
+ 
+  res.render("fuck u kameeny")
+  res.send("fuck u kameeny bt send")
+  res.json({message:"fuck u kameeny bt send"})
+
+
+
+});
 
 
 

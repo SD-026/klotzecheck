@@ -213,6 +213,7 @@ const App = () => {
       );
 
       if (response.data) {
+        console.log("Scraped data:", response.data);
         setResult(response.data);
       }
     } catch (err) {
@@ -265,7 +266,7 @@ const App = () => {
         <div className="flex flex-col space-y-4">
           <input
             type="url"
-            placeholder="eg: https://www.klotzetechnic.de/p/products/valve"
+            placeholder="Enter URL to scrape"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             className="border border-gray-300 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -311,15 +312,15 @@ const App = () => {
                 <div
 
                   className="bg-gradient-to-b py-20 from-yellow-300 to-yellow-200 text-white flex flex-col justify-center items-center p-6 md:w-3/5">
-                  {/* <h1 className="text-2xl font-bold mb-4 text-center text-blue-900">{result.pTexts[0]}</h1> */}
-                  {result.imageSrc && (
+                  {/* <h1 className="text-2xl font-bold mb-4 text-center text-blue-900">{result?.pTexts[0]}</h1> */}
+                  {result?.imageSrc && (
                     <><img
                     ref={imageref}
-                    src={result.imageSrc}
+                    src={result?.imageSrc}
                     alt="Extracted"
                     className={`w-full bg-transparent   h-full object-fill max-md:size-96 translate-y-full opacity-0 `}
                   />
-                  {/* <VideoGenerator imageUrl={result.imageSrc}/> */}
+                  {/* <VideoGenerator imageUrl={result?.imageSrc}/> */}
                   </>
                   )}
                   {/* <p className="mt-4 text-xs italic text-gray-200">
@@ -336,11 +337,11 @@ const App = () => {
 
                   <div className="space-y-4 relative  bg-opacity-0 "  >
 
-                  <h1 className="text-2xl leading-tight p-4 font-bold  text-center text-blue-900">{result.pTexts[0]}</h1>
+                  <h1 className="text-2xl leading-tight p-4 font-bold  text-center text-blue-900">{result?.pTexts[0]}</h1>
 
 
                     {
-                      result.pTexts.length === 10 && <>
+                      result?.pTexts?.length === 10 && <>
                      
 
                       <div className="flex gap-16  w-full " >
@@ -363,34 +364,34 @@ const App = () => {
 
                         <div className="flex px-4 py-1 gap-x-2 items-center  rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -mt-2 -ml-1 top-0 break-words">Klötze No:</p>
-                          <p className="text-yellow-300 font-bold text-sm ">{result.pTexts[1].split('Klötze No:')}</p>
+                          <p className="text-yellow-300 font-bold text-sm ">{result?.pTexts[1].split('Klötze No:')}</p>
                         </div>
  
                         
  
                         <div className="flex px-4 py-2   leading-tight   gap-x-2 items-center   rounded-3xl  bg-blue-900">
-                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result.pTexts[3]}</p>
-                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight ">{result.pTexts[4]}</p>
+                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result?.pTexts[3]}</p>
+                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight ">{result?.pTexts[4]}</p>
                         </div>
                         
                         
                        <div className="flex px-4 py-2   leading-tight  gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Weight:</p>
-                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight ">{result.pTexts[7].split('Weight:')}</p>
+                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight ">{result?.pTexts[7].split('Weight:')}</p>
                         </div>  
                         <div className="flex px-4 py-2   leading-tight  gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Package Unit:</p>
-                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight">{result.pTexts[8].split('Package Unit:')}</p>
+                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight">{result?.pTexts[8].split('Package Unit:')}</p>
                         </div> 
 
-                        {/* <p className="text-blue-900 font-bold">{result.pTexts[5]}</p> */}
+                        {/* <p className="text-blue-900 font-bold">{result?.pTexts[5]}</p> */}
                         <div className="flex w-full items-center justify-between gap-2">
-                          <p className="text-[6px] leading-tight text-gray-500">{result.pTexts[2]}</p>
+                          <p className="text-[6px] leading-tight text-gray-500">{result?.pTexts[2]}</p>
                         </div> 
 
                       
 
-                        {/* <p className="text-blue-900 font-bold ">{result.pTexts[6].split('Weight:')}</p> */}
+                        {/* <p className="text-blue-900 font-bold ">{result?.pTexts[6].split('Weight:')}</p> */}
 
 
                          
@@ -400,7 +401,7 @@ const App = () => {
                       </>
                     }
                     {
-                      result.pTexts.length === 11 &&
+                      result?.pTexts?.length === 11 &&
                       <>
                       
 
@@ -415,10 +416,10 @@ const App = () => {
 
                           
                           {/* <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div> */}
-                          {result.pTexts.length === 11 &&
+                          {result?.pTexts.length === 11 &&
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           }
-                           {result.pTexts.length === 12 &&<>
+                           {result?.pTexts.length === 12 &&<>
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           </>
@@ -435,43 +436,43 @@ const App = () => {
 
                         <div className="flex px-4 py-1   leading-tight mt-1 gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Klötze No:</p>
-                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight">{result.pTexts[1].split('Klötze No:')}</p>
+                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight">{result?.pTexts[1].split('Klötze No:')}</p>
                         </div>
 
                         
 
                         <div className="flex px-4 py-2   leading-tight 1  gap-x-2 items-center   rounded-3xl  bg-blue-900">
-                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result.pTexts[3]}</p>
-                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result.pTexts[4]}</p>
+                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result?.pTexts[3]}</p>
+                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result?.pTexts[4]}</p>
                         </div>
 
                         <div className="flex px-4 py-2  leading-tight 1  gap-x-2 items-center   rounded-3xl  bg-blue-900">
-                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result.pTexts[5]}</p>
-                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result.pTexts[6]}</p>
+                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result?.pTexts[5]}</p>
+                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result?.pTexts[6]}</p>
                         </div>
 
-                        {/* <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0 ">{result.pTexts[7]}</p> */}
+                        {/* <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0 ">{result?.pTexts[7]}</p> */}
 
 
                         <div className="flex px-4 py-2   leading-tight gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Weight:</p>
                         
-                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight  ">{result.pTexts[8].split('Weight:')}</p>
+                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight  ">{result?.pTexts[8].split('Weight:')}</p>
                         </div>
                         <div className="flex px-4 py-2   leading-tight  gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Package Unit:</p>
                          
-                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight  ">{result.pTexts[9].split('Package Unit:')}</p>
+                          <p className="text-yellow-300 font-bold text-[10px] break-words leading-tight  ">{result?.pTexts[9].split('Package Unit:')}</p>
                         </div> 
                         <div className="flex w-full items-center justify-between gap-2">
-                          <p className="text-[7px] leading-tight text-gray-500">{result.pTexts[2]}</p>
+                          <p className="text-[7px] leading-tight text-gray-500">{result?.pTexts[2]}</p>
                         </div> 
                       </div>
                       </div>
                       </>
                     }
                     {
-                      result.pTexts.length === 12 &&
+                      result?.pTexts?.length === 12 &&
                       <>
                       <div className="flex gap-12  w-full " >
                         {/* //inner left  */}
@@ -480,10 +481,10 @@ const App = () => {
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           {/* <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div> */}
-                          {result.pTexts.length === 11 &&
+                          {result?.pTexts.length === 11 &&
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           }
-                           {result.pTexts.length === 12 &&<>
+                           {result?.pTexts.length === 12 &&<>
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           <div className="bg-white rounded-tl-full rounded-bl-full rounded-tr-full rounded-b-3xl -rotate-45 size-6 p-2 -ml-2 border-blue-900 border-4"></div>
                           </>
@@ -499,24 +500,24 @@ const App = () => {
 
                         <div className="flex px-4 py-1   leading-tight 1 mt-1 gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Klötze No:</p>
-                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result.pTexts[1].split('Klötze No:')}</p>
+                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result?.pTexts[1].split('Klötze No:')}</p>
                         </div>
 
                         
 
                         <div className="flex px-4 py-2   leading-tight 1 mt-1 gap-x-2 items-center   rounded-3xl  bg-blue-900">
-                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result.pTexts[3]}</p>
-                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result.pTexts[4]}</p>
+                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result?.pTexts[3]}</p>
+                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result?.pTexts[4]}</p>
                         </div>
 
                         <div className="flex px-4 py-2   leading-tight 1 mt-1 gap-x-2 items-center   rounded-3xl  bg-blue-900">
-                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result.pTexts[5]}</p>
-                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result.pTexts[6]}</p>
+                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result?.pTexts[5]}</p>
+                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result?.pTexts[6]}</p>
                         </div>
 
                         <div className="flex px-4 py-2   leading-tight 1 mt-1 gap-x-2 items-center   rounded-3xl  bg-blue-900">
-                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result.pTexts[7]}</p>
-                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result.pTexts[8]}</p>
+                          <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">{result?.pTexts[7]}</p>
+                          <p className="text-yellow-300 font-bold text-[12px] break-words leading-tight ">{result?.pTexts[8]}</p>
                         </div>
 
 
@@ -524,15 +525,15 @@ const App = () => {
                          <div className="flex px-4 py-2   leading-tight  gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Weight:</p>
                     
-                          <p className="text-blue-900 font-bold ">{result.pTexts[9].split('Weight:')}</p>
+                          <p className="text-blue-900 font-bold ">{result?.pTexts[9].split('Weight:')}</p>
                         </div>
                         <div className="flex px-4 py-2   leading-tight  gap-x-2 items-center   rounded-3xl  bg-blue-900">
                           <p className="text-yellow-300 text-[8px] font-semibold -ml-1 top-0">Package Unit:</p>
                          
-                          <p className="text-blue-900 font-bold ">{result.pTexts[10].split('Package Unit:')}</p>
+                          <p className="text-blue-900 font-bold ">{result?.pTexts[10].split('Package Unit:')}</p>
                         </div> 
                         <div className="flex w-full items-center justify-between gap-2">
-                          <p className="text-[8px] leading-tight text-gray-500">{result.pTexts[2]}</p>
+                          <p className="text-[8px] leading-tight text-gray-500">{result?.pTexts[2]}</p>
                         </div> 
                       </div>
                       </div>
@@ -545,7 +546,7 @@ const App = () => {
 
 
 
-                    {/* {result.pTexts && result.pTexts.map((text, index) => (
+                    {/* {result?.pTexts && result.pTexts.map((text, index) => (
                   <div className="flex justify-between" key={index}>
                     <p className="text-sm font-semibold text-gray-600">Detail {index + 1}:</p>
                     <p className="text-blue-900 font-bold">{text}</p>
@@ -641,7 +642,7 @@ const App = () => {
       {/* {
         dataURL &&
         <div className="mt-6">
-          <h3 className="text-lg font-semibold mb-2">Recorded :</h3>
+          <h3 className="text-lg font-semibold mb-2">Recorded Video:</h3>
           <img src={dataURL}
             // src={videoURL}
             // controls
