@@ -16,6 +16,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const __dir_name=path.resolve()
 
+const corsOptions = {
+  origin:"https://klotzecheck.onrender.com",
+  credential:true
+}
+
 // Initialize Express app
 const app = express();
 
