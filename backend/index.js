@@ -116,7 +116,7 @@ app.post('/extract', async (req, res) => {
     try {
         browser = await puppeteer.launch({
             headless: true,
-            // args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
             executablePath: puppeteer.executablePath(),
 
         });
@@ -251,9 +251,8 @@ app.listen(port, () => {
 
 app.get("/demo", (req, res) => {
  
-  res.render("fuck u kameeny")
-  res.send("fuck u kameeny bt send")
-  res.json({message:"fuck u kameeny bt send"})
+ 
+  res.json({message:"send"})
 
 
 
