@@ -2,7 +2,7 @@ FROM ghcr.io/puppeteer/puppeteer:23.11.1
 
 # Set environment variables
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 # Set the working directory
 WORKDIR /usr/src/app
