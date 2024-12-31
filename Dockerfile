@@ -27,6 +27,8 @@ COPY . .
 # Switch to root for frontend dependency installation
 USER root
 
+RUN apk add --no-cache chromium
+
 # Install frontend dependencies and build the frontend
 RUN npm install --prefix frontend && npm run build --prefix frontend
 
