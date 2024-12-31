@@ -1,8 +1,8 @@
-FROM ghcr.io/puppeteer/puppeteer:23.11.1 
+FROM ghcr.io/puppeteer/puppeteer:23.11.1
 
 # Set environment variables
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -13,22 +13,35 @@ COPY package*.json ./
 # Install backend dependencies
 RUN npm ci
 
+# Install additional dependencies required for Puppeteer
+RUN apt-get update && apt-get install -y \
+    fonts-liberation \
+    libnss3 \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxrandr2
+
 # Create the frontend directory and set permissions
 RUN mkdir -p frontend && chown -R pptruser:pptruser frontend
 
-# Switch to the Puppeteer user
+# Switch to Puppeteer's default user
 USER pptruser
 
 # Copy the rest of the application code
 COPY . .
 
+# Switch to root for frontend dependency installation
 USER root
 
 # Install frontend dependencies and build the frontend
 RUN npm install --prefix frontend && npm run build --prefix frontend
 
-# Switch back to Puppeteer's default user
-# USER pptruser
+# Switch back to Puppeteer's default user for running the app
+
 
 # Start the backend server
 CMD ["node", "backend/index.js"]
+USER pptruser
