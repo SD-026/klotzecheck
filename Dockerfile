@@ -13,7 +13,13 @@ COPY package*.json ./
 # Install backend dependencies
 RUN npm ci
 
-# Copy the rest of the application code to the container
+# Create the frontend directory and set permissions
+RUN mkdir -p frontend && chown -R pptruser:pptruser frontend
+
+# Switch to the Puppeteer user
+USER pptruser
+
+# Copy the rest of the application code
 COPY . .
 
 # Install frontend dependencies and build the frontend
