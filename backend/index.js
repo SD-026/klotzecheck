@@ -124,8 +124,8 @@ app.post('/extract', async (req, res) => {
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox','--single-process ','--no-zygote','--disable-dev-shm-usage'],
             ignoreDefaultArgs: ['--disable-extensions'],
-            // executablePath:process.env.NODE_ENV ==="production"? process.env.PUPPETEER_EXECUTABLE_PATH:puppeteer.executablePath(),
-             executablePath:'/path/to/chrome'
+            executablePath:process.env.NODE_ENV ==="production"? process.env.PUPPETEER_EXECUTABLE_PATH:puppeteer.executablePath(),
+            //  executablePath: '/path/to/chrome'
 
         });
 
