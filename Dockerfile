@@ -28,7 +28,7 @@ USER root
 RUN npm install --prefix frontend && npm run build --prefix frontend
 
 # Switch back to Puppeteer's default user
-USER pptruser
+# USER pptruser
 
 # Start the backend server
 CMD ["node", "backend/index.js"]
