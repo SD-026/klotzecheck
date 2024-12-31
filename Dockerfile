@@ -7,4 +7,5 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci 
 COPY ..
+CMD ["npm install && npm install --prefix frontend && npm run build --prefix frontend",]
 CMD ["nodemon" ,"backend/index.js"]
