@@ -22,8 +22,13 @@ USER pptruser
 # Copy the rest of the application code
 COPY . .
 
+USER root
+
 # Install frontend dependencies and build the frontend
 RUN npm install --prefix frontend && npm run build --prefix frontend
+
+# Switch back to Puppeteer's default user
+USER pptruser
 
 # Start the backend server
 CMD ["nodemon", "backend/index.js"]
