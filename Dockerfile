@@ -8,7 +8,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json for dependencies
-COPY package*.json ./
+COPY package*.json ./ 
 
 # Install backend dependencies
 RUN npm ci
@@ -22,8 +22,11 @@ RUN mkdir -p frontend && chown -R pptruser:pptruser frontend
 # Copy the rest of the application code
 COPY . .
 
+# Ensure the frontend directory has the right permissions after copying
+RUN chown -R pptruser:pptruser /usr/src/app/frontend
+
 # Install frontend dependencies and build the frontend
-RUN npm install --prefix frontend && npm run build --prefix frontend
+RUN npm install --prefix frontend --unsafe-perm && npm run build --prefix frontend
 
 # Switch to root user for backend server
 USER root
