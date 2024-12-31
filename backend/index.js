@@ -23,7 +23,7 @@ const __dirname = path.dirname(__filename);
 const __dir_name=path.resolve()
 
 const corsOptions = {
-  origin:"https://klotzecheck.onrender.com",
+  origin:"https://klotzecheck-2.onrender.com",
   credential:true
 }
 
