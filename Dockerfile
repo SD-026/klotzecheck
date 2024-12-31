@@ -35,4 +35,4 @@ RUN npm install --prefix frontend && npm run build --prefix frontend
 
 # Start the backend server
 CMD ["node", "backend/index.js"]
-USER pptruser
+
