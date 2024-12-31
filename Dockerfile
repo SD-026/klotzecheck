@@ -14,15 +14,6 @@ COPY package*.json ./
 RUN npm ci
 
 # Install additional dependencies required for Puppeteer
-RUN apt-get update && apt-get install -y \
-    fonts-liberation \
-    libnss3 \
-    libatk1.0-0 \
-    libatk-bridge2.0-0 \
-    libcups2 \
-    libx11-xcb1 \
-    libxcomposite1 \
-    libxrandr2
 
 # Create the frontend directory and set permissions
 RUN mkdir -p frontend && chown -R pptruser:pptruser frontend
