@@ -24,7 +24,7 @@ const __dir_name=path.resolve()
 
 const corsOptions = {
   origin:"https://klotzecheck-2.onrender.com",
-  credential:true
+  // credential:true
 }
 
 // Initialize Express app
@@ -122,7 +122,8 @@ app.post('/extract', async (req, res) => {
     try {
         browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox','--single-process ','--no-zygote'],
+            args: ['--no-sandbox', '--disable-setuid-sandbox','--single-process ','--no-zygote','--disable-dev-shm-usage'],
+            ignoreDefaultArgs: ['--disable-extensions'],
             executablePath:process.env.NODE_ENV ==="production"? process.env.PUPPETEER_EXECUTABLE_PATH:puppeteer.executablePath(),
 
         });
