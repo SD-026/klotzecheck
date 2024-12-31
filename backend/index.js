@@ -9,6 +9,12 @@ import { fileURLToPath } from 'url';
 import ffmpeg from 'fluent-ffmpeg';
 import ffmpegPath from 'ffmpeg-static'
 import  request  from 'request';
+import dotenv from 'dotenv'
+
+
+
+
+dotenv.config({})
 
 
 
@@ -116,8 +122,8 @@ app.post('/extract', async (req, res) => {
     try {
         browser = await puppeteer.launch({
             headless: true,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            executablePath: puppeteer.executablePath(),
+            args: ['--no-sandbox', '--disable-setuid-sandbox','--single-process ','--no-zygote'],
+            executablePath:process.env.NODE_ENV ==="production"? process.env.PUPPETEER_EXECUTABLE_PATH:puppeteer.executablePath(),
 
         });
 
