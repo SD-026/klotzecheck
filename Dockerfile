@@ -17,19 +17,22 @@ RUN npm ci
 RUN mkdir -p /usr/src/app/backend/output && chown -R pptruser:pptruser /usr/src/app/backend/output
 
 # Create the frontend directory and set permissions
-RUN mkdir -p frontend && chown -R pptruser:pptruser frontend
+RUN mkdir -p frontend 
 
 # Copy the rest of the application code
 COPY . .
 
-# Ensure the frontend directory has the right permissions after copying
-RUN chown -R pptruser:pptruser /usr/src/app/frontend
+# Switch to root user for chown
+USER root
+
+# Set ownership of frontend files as root
+RUN chown -R root:root /usr/src/app/frontend
+
+# Switch to pptruser for further steps
+USER pptruser
 
 # Install frontend dependencies and build the frontend
 RUN npm install --prefix frontend --unsafe-perm && npm run build --prefix frontend
-
-# Switch to root user for backend server
-USER root
 
 # Start the backend server
 CMD ["node", "backend/index.js"]
