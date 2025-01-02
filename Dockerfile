@@ -12,12 +12,9 @@ COPY package*.json ./
 
 # Install backend dependencies
 RUN npm ci
-USER pptruser
+USER root
 # Install necessary libraries for Puppeteer
-RUN apt-get update && apt-get install -y \
-    wget \
-    --no-install-recommends \
-    && apt-get clean
+
 
 # Install Chrome for Puppeteer
 RUN npm install puppeteer
