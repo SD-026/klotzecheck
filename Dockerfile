@@ -12,6 +12,15 @@ COPY package*.json ./
 
 # Install backend dependencies
 RUN npm ci
+USER pptruser
+# Install necessary libraries for Puppeteer
+RUN apt-get update && apt-get install -y \
+    wget \
+    --no-install-recommends \
+    && apt-get clean
+
+# Install Chrome for Puppeteer
+RUN npm install puppeteer
 
 # Install additional dependencies required for Puppeteer
 
@@ -19,7 +28,7 @@ RUN npm ci
 RUN mkdir -p frontend && chown -R pptruser:pptruser frontend
 
 # Switch to Puppeteer's default user
-USER pptruser
+
 
 # Copy the rest of the application code
 COPY . .
@@ -27,7 +36,7 @@ COPY . .
 # Switch to root for frontend dependency installation
 USER root
 
-RUN apk add --no-cache chromium
+# RUN apk add --no-cache chromium
 
 # Install frontend dependencies and build the frontend
 RUN npm install --prefix frontend && npm run build --prefix frontend
